@@ -1,6 +1,6 @@
-INCLUDE /data/data/com.termux/files/home/storage/downloads/remind/reminders
-INCLUDE /data/data/com.termux/files/home/storage/downloads/remind/archive
-INCLUDE /data/data/com.termux/files/home/storage/downloads/remind/birthdays
-INCLUDE /data/data/com.termux/files/home/storage/downloads/remind/holidays
-INCLUDE /data/data/com.termux/files/home/storage/downloads/remind/regulars
-INCLUDE /data/data/com.termux/files/home/storage/downloads/remind/training
+INCLUDE /data/data/com.termux/files/home/storage/Sync/remind/reminders
+INCLUDE /data/data/com.termux/files/home/storage/Sync/remind/archive
+INCLUDE /data/data/com.termux/files/home/storage/Sync/remind/birthdays
+INCLUDE /data/data/com.termux/files/home/storage/Sync/remind/holidays
+INCLUDE /data/data/com.termux/files/home/storage/Sync/remind/regulars
+INCLUDE /data/data/com.termux/files/home/storage/Sync/remind/training
