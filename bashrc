@@ -42,3 +42,10 @@ upgrade_termux() {
 }
 
 alias upgrade=upgrade_termux
+
+alias backrem='remind -z -k"termux-notification -title Remind" ~/.reminders &'
+
+[ pgrep remind > /dev/null ] || backrem
+
+# TERMINAL GREETING
+remt
