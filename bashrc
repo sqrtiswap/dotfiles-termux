@@ -25,6 +25,7 @@ alias remind='remind -m -b1'
 alias w2rem='remind -cu+2 ~/.reminders'
 alias m2rem='remind -cu2 ~/.reminders'
 alias remt='rem -n -b1 | grep "$(date +%Y/%m/%d)"'
+alias backrem='remind -z -k"termux-notification -title Remind" ~/.reminders &'
 
 alias vise=vis
 export VIS_PATH=$HOME/.config/vis
@@ -43,9 +44,9 @@ upgrade_termux() {
 
 alias upgrade=upgrade_termux
 
-alias backrem='remind -z -k"termux-notification -title Remind" ~/.reminders &'
+# AUTOSTART
 
-[ pgrep remind > /dev/null ] || backrem
+pidof -q remind || backrem
 
 # TERMINAL GREETING
 remt
