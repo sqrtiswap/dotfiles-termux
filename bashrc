@@ -8,6 +8,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias ss='cd ~/storage/shared/Sync/ && la'
+alias sd=ss
 
 alias ls='ls -FHh'
 alias ll='ls -l'
