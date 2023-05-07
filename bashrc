@@ -49,4 +49,26 @@ alias upgrade=upgrade_termux
 pidof -q remind || backrem
 
 # TERMINAL GREETING
-remt
+
+_uptime=$(uptime)
+
+drawsep() {
+	if [ -z "$1" ] ; then
+		_minus=''
+		printf "======"
+	else
+		_minus="$1"
+		printf "==== %s " "${_minus}"
+	fi
+	if command -v jot > /dev/null ; then
+		printf "=%.0s" $(jot $((${#_uptime}-${#_minus}-6))) ; printf '\n'
+	else
+		perl -e 'print("=" x $ARGV[0], "\n" )' "$((${#_uptime}-${#_minus}-6))"
+	fi
+}
+
+drawsep && uptime
+
+[ "$(remt | wc -l)" -gt 0 ] \
+	&& drawsep 'REMIND' \
+	&& remt
