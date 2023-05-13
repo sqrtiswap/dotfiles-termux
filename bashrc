@@ -65,7 +65,7 @@ alias wdetmold='curl https://wttr.in/detmold'
 alias wberlin='curl https://wttr.in/berlin'
 
 upgrade_termux() {
-	pkg upgrade && apt autoremove && printf "%s" "${_good}Upgrade successful.${_rset}\n"
+	pkg upgrade && apt autoremove && printf "${_good}Upgrade successful.${_rset}\n"
 	printf "\nClose this session? [y/n] "
 	IFS= read -r _close_session
 	if [ "${_close_session}" = "y" ] ; then
