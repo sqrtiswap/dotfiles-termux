@@ -137,8 +137,6 @@ drawsep() {
 	fi
 }
 
-drawsep && uptime
-
 print_greeting() {
 	[ $(remt | wc -l) -gt 0 ] \
 		&& drawsep 'REMIND' \
@@ -146,3 +144,5 @@ print_greeting() {
 	drawsep 'TODO'
 	todo today
 }
+
+drawsep && uptime && print_greeting
