@@ -18,6 +18,31 @@ case "$(id -u)" in
 	*) _PS1_COLOUR=$_PS1_GREEN ;;
 esac
 
+git_branch() {
+	if git rev-parse --git-dir > /dev/null 2>&1 && git rev-parse --abbrev-ref HEAD > /dev/null 2>&1 ; then
+		printf " %s" "$(git rev-parse --abbrev-ref HEAD)"
+	else
+		printf ""
+	fi
+}
+
+ahead_behind() {
+	if git rev-parse --git-dir > /dev/null 2>&1 && git rev-parse --abbrev-ref HEAD > /dev/null 2>&1 ; then
+		# get branch
+		curr_branch=$(git rev-parse --abbrev-ref HEAD)
+		# get corresponding remote branch
+		curr_remote=$(git config branch.$curr_branch.remote)
+		if [ -n "${curr_remote}" ] ; then
+			# get branch the remote should be merged into
+			curr_merge_branch=$(git config branch.$curr_branch.merge | cut -d / -f 3)
+			# count and compare commits
+			git rev-list --left-right --count $curr_branch...$curr_remote/$curr_merge_branch | tr -s '\t' '|'
+		else
+			printf ""
+		fi
+	fi
+}
+
 _shell=$(echo "$0" | awk '{ gsub("/data/data/com.termux/files", "", $0); print $0 }')
 _exit_code="\[\033[0;\$((\$?==0?0:31))m\]\[[\${?}]"
 if [[ "$TERM" =~ tmux ]] ; then
@@ -25,9 +50,10 @@ if [[ "$TERM" =~ tmux ]] ; then
 else
 	_basics="$_XTERM_TITLE$_SH_COLOUR$_shell $_exit_code $_PS1_COLOUR\u@$_PS1_CLEAR\h $_PS1_BLUE\w$_PS1_CLEAR"
 fi
+_git_prompt="$_GIT_COLOUR\$(git_branch) \$(ahead_behind)"
 _time="$_PS1_CLEAR\A"
 _prompt="$_PS1_COLOUR\$$_PS1_CLEAR"
-PS1="${_basics} \n${_time} ${_prompt} "
+PS1="${_basics} ${_git_prompt}\n${_time} ${_prompt} "
 PS2='> '
 
 export PS1 PS2
