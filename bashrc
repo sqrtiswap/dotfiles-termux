@@ -58,6 +58,9 @@ PS2='> '
 
 export PS1 PS2
 
+export PATH=$PATH:~/bin
+export MANPATH=$MANPATH:~/man
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
