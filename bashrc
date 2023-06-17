@@ -75,6 +75,16 @@ upgrade_termux() {
 
 alias upgrade=upgrade_termux
 
+# PROJECTS
+alias t=todo
+export TODODIR="$HOME"/.todo
+export TODO_COLOUR_A="\033[31m" # red
+export TODO_COLOUR_B="\033[33m" # yellow
+export TODO_COLOUR_C="\033[32m" # green
+export TODO_COLOUR_D="\033[34m" # blue
+
+alias agenda=print_greeting
+
 # AUTOSTART
 
 pidof -q remind || backrem
@@ -100,6 +110,10 @@ drawsep() {
 
 drawsep && uptime
 
-[ "$(remt | wc -l)" -gt 0 ] \
-	&& drawsep 'REMIND' \
-	&& remt
+print_greeting() {
+	[ $(remt | wc -l) -gt 0 ] \
+		&& drawsep 'REMIND' \
+		&& remt
+	drawsep 'TODO'
+	todo today
+}
