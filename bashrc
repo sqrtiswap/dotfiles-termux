@@ -82,7 +82,7 @@ alias cal='cal -mwy'
 alias remind='remind -m -b1'
 alias w2rem='remind -cu+2 ~/.reminders'
 alias m2rem='remind -cu2 ~/.reminders'
-alias remt='rem -n -b1 | grep "$(date +%Y/%m/%d)"'
+alias remt='rem -n -b1 | grep "$(date +%Y/%m/%d)" | sort'
 alias backrem='remind -z -k"termux-notification -c '%s' -t Remind" ~/.reminders &'
 # needs to be installed: 1. pkg install termux-api
 #                        2. F-Droid Termux:API plugin
