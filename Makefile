@@ -13,5 +13,7 @@ install:
 uninstall:
 	rm -f ~/.bashrc
 	rm -f ~/.reminders
+	rm -f ~/.todo
+	rm -f ~/.todo_uni
 
 .PHONY: all install uninstall
