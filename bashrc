@@ -112,6 +112,10 @@ export TODO_COLOUR_B="\033[33m" # yellow
 export TODO_COLOUR_C="\033[32m" # green
 export TODO_COLOUR_D="\033[34m" # blue
 
+export UNITODODIR="$HOME"/.todo_uni
+alias ut='TODODIR=$UNITODODIR todo'
+alias uticket='TODODIR=$UNITODODIR ticket'
+
 alias agenda=print_greeting
 
 # AUTOSTART
@@ -137,8 +141,10 @@ print_greeting() {
 	[ $(remt | wc -l) -gt 0 ] \
 		&& drawsep 'REMIND' \
 		&& remt
-	drawsep 'TODO'
+	drawsep 'PRIVATE todo (t)'
 	todo today
+	drawsep 'UNIVERSITY todo (ut)'
+	ut today
 }
 
 drawsep && uptime && print_greeting
