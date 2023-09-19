@@ -1,0 +1,28 @@
+[core]
+	excludesfile = ~/.gitignore
+[alias]
+	graph = log --graph --decorate --pretty=format:'%Creset%h:%C(bold Blue)%d%Creset %an %cd (%cr)%n%s%n' --date=short --all
+	lg = log --color --graph --decorate --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset - %C(bold blue)<%an> %Cgreen(%ad)%C(yellow)%d%Creset%n%s ' --all
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	cp = cherry-pick
+	df = diff
+	up = "!git remote update -p; git merge --ff-only @{u}"
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	cl = "config --list"
+[pull]
+	ff = only
+# define command which will be used when "nvim" is set as a merge tool
+[mergetool "nvim"]
+	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+# set "nvim" as tool for merging
+[merge]
+	tool = nvim
+# automatically launch merge tool without displaying a prompt
+[mergetool]
+	prompt = false
+[init]
+	defaultBranch = main
