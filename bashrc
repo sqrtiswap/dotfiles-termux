@@ -130,11 +130,7 @@ drawsep() {
 		_minus="$1"
 		printf "==== %s " "${_minus}"
 	fi
-	if command -v jot > /dev/null ; then
-		printf "=%.0s" $(jot $((${#_uptime}-${#_minus}-6))) ; printf '\n'
-	else
-		perl -e 'print("=" x $ARGV[0], "\n" )' "$((${#_uptime}-${#_minus}-6))"
-	fi
+	perl -e 'print("=" x $ARGV[0], "\n" )' "$((${#_uptime}-${#_minus}-6))"
 }
 
 print_greeting() {
