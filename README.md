@@ -3,6 +3,7 @@
 ## Requirements
 The following directories are expected to exist:
 - `~/storage/shared/Sync/todo`
+- `~/storage/shared/Sync/todo_fist`
 - `~/storage/shared/Sync/todo_uni`
 - `~/storage/shared/Sync/remind`
 

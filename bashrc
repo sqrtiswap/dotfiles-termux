@@ -116,6 +116,10 @@ export UNITODODIR="$HOME"/.todo_uni
 alias ut='TODODIR=$UNITODODIR todo'
 alias uticket='TODODIR=$UNITODODIR ticket'
 
+export FISTTODODIR="$HOME"/.todo_fist
+alias ft='TODODIR=$FISTTODODIR todo'
+alias fticket='TODODIR=$FISTTODODIR ticket'
+
 alias agenda=print_greeting
 
 # AUTOSTART
@@ -145,6 +149,8 @@ print_greeting() {
 	todo today
 	drawsep 'UNIVERSITY todo (ut)'
 	ut today
+	drawsep 'F.I.S.T. todo (ft)'
+	ft today
 }
 
 drawsep && uptime && print_greeting
