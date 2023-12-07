@@ -103,6 +103,16 @@ export FCEDIT=$EDITOR
 export PAGER=less
 export LESS='-iMRS -x2'
 
+# HISTORY
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL="erasedups:ignoreboth"
+HISTTIMEFORMAT='%F %T '
+# append to the history file, don't overwrite it
+shopt -s histappend
+HISTFILE="$HOME"/.bash_history
+HISTSIZE=10000
+HISTFILESIZE=2000
+
 # WEATHER
 alias wdetmold='curl https://wttr.in/detmold'
 alias wberlin='curl https://wttr.in/berlin'
