@@ -87,9 +87,23 @@ alias backrem='remind -z -k"termux-notification -c '%s' -t Remind" ~/.reminders 
 # needs to be installed: 1. pkg install termux-api
 #                        2. F-Droid Termux:API plugin
 
-alias vise=vis
-export VIS_PATH=$HOME/.config/vis
+# EDITOR, PAGER
+if command -v vis > /dev/null ; then
+	VI=vis
+	export VIS_PATH=$HOME/.config/vis
+elif command -v nvim > /dev/null ; then
+	VI='nvim'
+else
+	VI='vi'
+fi
+alias vise="$VI"
+export EDITOR=$VI
+export VISUAL=$VI
+export FCEDIT=$EDITOR
+export PAGER=less
+export LESS='-iMRS -x2'
 
+# WEATHER
 alias wdetmold='curl https://wttr.in/detmold'
 alias wberlin='curl https://wttr.in/berlin'
 
