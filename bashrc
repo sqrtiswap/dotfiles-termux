@@ -5,7 +5,6 @@ _fail="\033[31m"
 _rset="\033[0m"
 
 # PROMPT
-
 _XTERM_TITLE='\[\033]0;\u@\h:\w\007\]'
 _PS1_CLEAR='\[\033[0m\]'   # reset
 _PS1_BLUE='\[\033[34m\]'   # blue
@@ -20,7 +19,7 @@ esac
 
 git_branch() {
 	if git rev-parse --git-dir > /dev/null 2>&1 && git rev-parse --abbrev-ref HEAD > /dev/null 2>&1 ; then
-		printf " %s" "$(git rev-parse --abbrev-ref HEAD)"
+		printf "%s" "$(git rev-parse --abbrev-ref HEAD)"
 	else
 		printf ""
 	fi
@@ -77,12 +76,13 @@ alias du='du -ch'
 alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -v'
+
+# CALENDAR
 alias cal='cal -mwy'
 
 alias remind='remind -m -b1'
-alias w2rem='remind -cu+2 ~/.reminders'
-alias m2rem='remind -cu2 ~/.reminders'
-alias remt='rem -n -b1 | grep "$(date +%Y/%m/%d)" | sort'
+alias rem='rem -m -b1 -@ -gaadd'
+alias remt='rem'
 alias backrem='remind -z -k"termux-notification -c '%s' -t Remind" ~/.reminders &'
 # needs to be installed: 1. pkg install termux-api
 #                        2. F-Droid Termux:API plugin
@@ -112,10 +112,15 @@ shopt -s histappend
 HISTFILE="$HOME"/.bash_history
 HISTSIZE=10000
 HISTFILESIZE=2000
+shopt -s cmdhist
 
 # WEATHER
-alias wdetmold='curl https://wttr.in/detmold'
-alias wberlin='curl https://wttr.in/berlin'
+weather() {
+	[ -n "$1" ] && location="$1" || location='Berlin'
+	curl https://wttr.in/"${location}"
+}
+alias wberlin='weather Berlin'
+alias wdetmold='weather Detmold'
 
 upgrade_termux() {
 	pkg upgrade && apt autoremove && printf "${_good}Upgrade successful.${_rset}\n"
@@ -125,7 +130,6 @@ upgrade_termux() {
 		exit
 	fi
 }
-
 alias upgrade=upgrade_termux
 
 # PROJECTS
@@ -143,8 +147,6 @@ alias uticket='TODODIR=$UNITODODIR ticket'
 export FISTTODODIR="$HOME"/.todo_fist
 alias ft='TODODIR=$FISTTODODIR todo'
 alias fticket='TODODIR=$FISTTODODIR ticket'
-
-alias agenda=print_greeting
 
 # AUTOSTART
 
@@ -165,16 +167,14 @@ drawsep() {
 	perl -e 'print("=" x $ARGV[0], "\n" )' "$((${#_uptime}-${#_minus}-6))"
 }
 
-print_greeting() {
-	[ $(remt | wc -l) -gt 0 ] \
-		&& drawsep 'REMIND' \
-		&& remt
+agenda() {
+	[ -z "$1" ] && remt
 	drawsep 'PRIVATE todo (t)'
-	todo today
+	todo today "$1"
 	drawsep 'UNIVERSITY todo (ut)'
-	ut today
+	ut today "$1"
 	drawsep 'F.I.S.T. todo (ft)'
-	ft today
+	ft today "$1"
 }
 
-drawsep && uptime && print_greeting
+drawsep && uptime && agenda
