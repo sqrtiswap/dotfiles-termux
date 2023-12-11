@@ -1,8 +1,0 @@
-INCLUDE /data/data/com.termux/files/home/storage/shared/Sync/remind/reminders
-INCLUDE /data/data/com.termux/files/home/storage/shared/Sync/remind/archive
-INCLUDE /data/data/com.termux/files/home/storage/shared/Sync/remind/birthdays
-INCLUDE /data/data/com.termux/files/home/storage/shared/Sync/remind/birthdays-work
-INCLUDE /data/data/com.termux/files/home/storage/shared/Sync/remind/holidays
-INCLUDE /data/data/com.termux/files/home/storage/shared/Sync/remind/regulars
-INCLUDE /data/data/com.termux/files/home/storage/shared/Sync/remind/training
-INCLUDE /data/data/com.termux/files/home/storage/shared/Sync/remind/training-archive
