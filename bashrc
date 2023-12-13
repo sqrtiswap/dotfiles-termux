@@ -63,7 +63,8 @@ export MANPATH=$MANPATH:~/man
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ss='cd ~/storage/shared/Sync/ && la'
+shared_storage="$HOME"/storage/shared
+alias ss='cd "${shared_storage}"/Sync/ && la'
 alias sd=ss
 
 alias ls='ls -FHh'
@@ -104,14 +105,12 @@ export PAGER=less
 export LESS='-iMRS -x2'
 
 # HISTORY
-# don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL="erasedups:ignoreboth"
 HISTTIMEFORMAT='%F %T '
-# append to the history file, don't overwrite it
-shopt -s histappend
 HISTFILE="$HOME"/.bash_history
 HISTSIZE=10000
 HISTFILESIZE=2000
+shopt -s histappend
 shopt -s cmdhist
 
 # WEATHER
@@ -148,9 +147,20 @@ export FISTTODODIR="$HOME"/.todo_fist
 alias ft='TODODIR=$FISTTODODIR todo'
 alias fticket='TODODIR=$FISTTODODIR ticket'
 
+# CLEAN UP
+# some apps create stupid directories that clutter the view in the file manager
+cld() {
+	rm -rf "${shared_storage}"/Pictures/.thumbnails > /dev/null 2>&1
+	rm -rf "${shared_storage}"/Movies/.thumbnails > /dev/null 2>&1
+	rmdir "${shared_storage}"/Movies > /dev/null 2>&1
+	rmdir "${shared_storage}"/Download > /dev/null 2>&1
+	rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
+}
+
 # AUTOSTART
 
 pidof -q remind || backrem
+cld
 
 # TERMINAL GREETING
 
