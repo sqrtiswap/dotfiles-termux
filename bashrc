@@ -155,6 +155,7 @@ cld() {
 	rmdir "${shared_storage}"/Movies > /dev/null 2>&1
 	rmdir "${shared_storage}"/Download > /dev/null 2>&1
 	rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
+	exit 0
 }
 
 # AUTOSTART
