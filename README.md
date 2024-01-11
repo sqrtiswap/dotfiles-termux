@@ -1,5 +1,11 @@
 # dotfiles-termux
 
+```
+└── home
+    ├── .bashrc
+    └── .gitconfig
+```
+
 ## Setup
 1. Setup [shared storage](https://wiki.termux.com/wiki/Termux-setup-storage).
 2. Install the [Termux:API plugin](https://wiki.termux.com/wiki/Termux:API).

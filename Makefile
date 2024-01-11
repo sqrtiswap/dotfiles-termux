@@ -6,8 +6,8 @@ syncdir = ~/storage/shared/Sync
 all: install
 
 install:
-	ln -sf ${dotdir}/bashrc ~/.bashrc
-	ln -sf ${dotdir}/gitconfig ~/.gitconfig
+	ln -sf ${dotdir}/home/.bashrc ~/.bashrc
+	ln -sf ${dotdir}/home/.gitconfig ~/.gitconfig
 	ln -sf ${syncdir}/remind ~/.config/remind
 	ln -sf ~/.config/remind/reminders.rem ~/.reminders
 	ln -sf ${syncdir}/todo ~/.todo
