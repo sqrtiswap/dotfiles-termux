@@ -114,10 +114,6 @@ shopt -s histappend
 shopt -s cmdhist
 
 # WEATHER
-weather() {
-	[ -n "$1" ] && location="$1" || location='Berlin'
-	curl https://wttr.in/"${location}"
-}
 alias wberlin='weather Berlin'
 alias wdetmold='weather Detmold'
 

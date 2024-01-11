@@ -18,6 +18,9 @@ install:
 	@ln -sf ${syncdir}/todo ~/.todo
 	@ln -sf ${syncdir}/todo_fist ~/.todo_fist
 	@ln -sf ${syncdir}/todo_uni ~/.todo_uni
+	@echo "==== Linking tools in ~/bin ============"
+	@mkdir -p ~/bin
+	ln -sf ${dotdir}/bin/weather ~/bin/weather
 
 uninstall:
 	@echo "==== Removing links from HOME =========="
@@ -32,5 +35,7 @@ uninstall:
 	@rm -f ~/.todo
 	@rm -f ~/.todo_fist
 	@rm -f ~/.todo_uni
+	@echo "==== Removing tools from ~/bin ========="
+	rm -f ~/bin/weather
 
 .PHONY: all install uninstall

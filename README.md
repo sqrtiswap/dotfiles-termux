@@ -1,6 +1,8 @@
 # dotfiles-termux
 
 ```
+├── bin
+│   └── weather
 └── home
     ├── .bashrc
     └── .gitconfig
