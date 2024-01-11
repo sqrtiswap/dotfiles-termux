@@ -67,7 +67,7 @@ shared_storage="$HOME"/storage/shared
 alias ss='cd "${shared_storage}"/Sync/ && la'
 alias sd=ss
 
-alias ls='ls -FHh'
+alias ls='LANG=C ls --color=auto --group-directories-first -FHh'
 alias ll='ls -l'
 alias la='ls -lA'
 
