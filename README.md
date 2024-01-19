@@ -2,6 +2,7 @@
 
 ```
 ├── bin
+│   ├── upgrade
 │   └── weather
 └── home
     ├── .bashrc

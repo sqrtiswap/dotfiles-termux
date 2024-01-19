@@ -1,9 +1,5 @@
 #!/bin/bash
 
-_good="\033[32m"
-_fail="\033[31m"
-_rset="\033[0m"
-
 # PROMPT
 _XTERM_TITLE='\[\033]0;\u@\h:\w\007\]'
 _PS1_CLEAR='\[\033[0m\]'   # reset
@@ -116,16 +112,6 @@ shopt -s cmdhist
 # WEATHER
 alias wberlin='weather Berlin'
 alias wdetmold='weather Detmold'
-
-upgrade_termux() {
-	pkg upgrade && apt autoremove && printf "${_good}Upgrade successful.${_rset}\n"
-	printf "\nClose this session? [y/n] "
-	IFS= read -r _close_session
-	if [ "${_close_session}" = "y" ] ; then
-		exit
-	fi
-}
-alias upgrade=upgrade_termux
 
 # PROJECTS
 alias t=todo
