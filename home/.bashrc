@@ -78,7 +78,7 @@ alias rm='rm -v'
 alias cal='cal -mwy'
 
 alias remind='remind -m -b1'
-alias rem='rem -m -b1 -@ -gaadd'
+alias rem='rem -m -b1 -@2,0 -gaadd'
 alias remt='rem'
 alias backrem='remind -z -k"termux-notification -c '%s' -t Remind" ~/.reminders &'
 # needs to be installed: 1. pkg install termux-api
