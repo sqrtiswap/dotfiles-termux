@@ -2,6 +2,7 @@
 
 ```
 ├── bin
+│   ├── drawsep
 │   ├── termuxupgrade
 │   └── weather
 └── home

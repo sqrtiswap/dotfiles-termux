@@ -156,18 +156,7 @@ cld
 
 # TERMINAL GREETING
 
-_uptime=$(uptime)
-
-drawsep() {
-	if [ -z "$1" ] ; then
-		_minus=''
-		printf "======"
-	else
-		_minus="$1"
-		printf "==== %s " "${_minus}"
-	fi
-	perl -e 'print("=" x $ARGV[0], "\n" )' "$((${#_uptime}-${#_minus}-6))"
-}
+export UPTIMETXT=$(uptime)
 
 agenda() {
 	[ -z "$1" ] && drawsep 'REMIND' && remt
