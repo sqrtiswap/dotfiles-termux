@@ -2,7 +2,7 @@
 
 ```
 ├── bin
-│   ├── upgrade
+│   ├── termuxupgrade
 │   └── weather
 └── home
     ├── .bashrc

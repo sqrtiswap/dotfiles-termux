@@ -13,7 +13,9 @@ close_session() {
 	printf "\nClose this session? [y/n] "
 	IFS= read -r _close_session
 	if [ "${_close_session}" = "y" ] ; then
-		exit
+		exit 0
+	else
+		exit 1
 	fi
 }
 

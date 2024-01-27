@@ -20,7 +20,7 @@ install:
 	@ln -sf ${syncdir}/todo_uni ~/.todo_uni
 	@echo "==== Linking tools in ~/bin ============"
 	@mkdir -p ~/bin
-	ln -sf ${dotdir}/bin/upgrade ~/bin/upgrade
+	ln -sf ${dotdir}/bin/termuxupgrade ~/bin/termuxupgrade
 	ln -sf ${dotdir}/bin/weather ~/bin/weather
 
 uninstall:
@@ -37,7 +37,7 @@ uninstall:
 	@rm -f ~/.todo_fist
 	@rm -f ~/.todo_uni
 	@echo "==== Removing tools from ~/bin ========="
-	rm -f ~/bin/upgrade
+	rm -f ~/bin/termuxupgrade
 	rm -f ~/bin/weather
 
 .PHONY: all install uninstall

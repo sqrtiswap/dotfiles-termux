@@ -114,6 +114,10 @@ alias wberlin='weather Berlin'
 alias wdetmold='weather Detmold'
 
 # PROJECTS
+
+_fail="\033[31m"
+_rset="\033[0m"
+
 alias t=todo
 export TODODIR="$HOME"/.todo
 export TODO_COLOUR_A="\033[31m" # red
@@ -123,11 +127,9 @@ export TODO_COLOUR_D="\033[34m" # blue
 
 export UNITODODIR="$HOME"/.todo_uni
 alias ut='TODODIR=$UNITODODIR todo'
-alias uticket='TODODIR=$UNITODODIR ticket'
 
 export FISTTODODIR="$HOME"/.todo_fist
 alias ft='TODODIR=$FISTTODODIR todo'
-alias fticket='TODODIR=$FISTTODODIR ticket'
 
 # CLEAN UP
 # some apps create stupid directories that clutter the view in the file manager
@@ -137,6 +139,14 @@ cld() {
 	rmdir "${shared_storage}"/Movies > /dev/null 2>&1
 	rmdir "${shared_storage}"/Download > /dev/null 2>&1
 	rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
+}
+
+upgrade() {
+	if termuxupgrade ; then
+		exit 0
+	else
+		printf "${_fail}Some things like configs might not be properly updated until a restart is performed.${_rset}\n"
+	fi
 }
 
 # AUTOSTART
