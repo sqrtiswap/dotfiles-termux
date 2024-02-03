@@ -74,6 +74,20 @@ alias cp='cp -iv'
 alias mv='mv -iv'
 alias rm='rm -v'
 
+# PACKAGE MANAGEMENT
+alias pkga='pkg install'
+alias pkgd='pkg uninstall'
+alias pkgl='pkg list-installed'
+alias pkgs='pkg search'
+
+upgrade() {
+	if termuxupgrade ; then
+		exit 0
+	else
+		printf "${_fail}Some things like configs might not be properly updated until a restart is performed.${_rset}\n"
+	fi
+}
+
 # CALENDAR
 alias cal='cal -mwy'
 
@@ -139,14 +153,6 @@ cld() {
 	rmdir "${shared_storage}"/Movies > /dev/null 2>&1
 	rmdir "${shared_storage}"/Download > /dev/null 2>&1
 	rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
-}
-
-upgrade() {
-	if termuxupgrade ; then
-		exit 0
-	else
-		printf "${_fail}Some things like configs might not be properly updated until a restart is performed.${_rset}\n"
-	fi
 }
 
 # AUTOSTART
