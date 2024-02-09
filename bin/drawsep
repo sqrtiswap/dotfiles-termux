@@ -7,17 +7,17 @@
 drawsep() {
 	if [ -z "$1" ] ; then
 		_minus=''
-		printf "======"
+		printf "======="
 	else
 		_minus="$1"
-		printf "==== %s " "${_minus}"
+		printf "===== %s " "${_minus}"
 	fi
 	if command -v jot > /dev/null ; then
-		printf "=%.0s" $(jot $((${#_uptime}-${#_minus}-6))) ; printf '\n'
+		printf "=%.0s" $(jot $((${#_uptime}-${#_minus}-7))) ; printf '\n'
 	elif command -v perl > /dev/null ; then
-		perl -e 'print("=" x $ARGV[0], "\n" )' "$((${#_uptime}-${#_minus}-6))"
+		perl -e 'print("=" x $ARGV[0], "\n" )' "$((${#_uptime}-${#_minus}-7))"
 	else
-		printf '%*s' $((${#_uptime}-${#_minus}-6)) "" | tr ' ' '=' ; printf '\n'
+		printf '%*s' $((${#_uptime}-${#_minus}-7)) "" | tr ' ' '=' ; printf '\n'
 	fi
 }
 
