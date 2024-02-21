@@ -2,6 +2,7 @@
 
 ```
 ├── bin
+│   ├── agenda
 │   ├── drawsep
 │   ├── termuxupgrade
 │   └── weather

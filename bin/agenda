@@ -1,0 +1,71 @@
+#!/bin/sh
+#
+# Copyright (c) 2024 Alexander Möller <alexander.moeller@detmold.com>
+#
+# Permission to use, copy, modify, and distribute this software for any
+# purpose with or without fee is hereby granted, provided that the above
+# copyright notice and this permission notice appear in all copies.
+#
+# THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+# WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+# MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+# ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+# WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+# ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+# OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+date_today=$(date +%Y-%m-%d)
+
+check_due_dates() {
+	n=0
+	for x in ${due_dates} ; do
+		if [ "$n" -eq 0 ] && expr "$x" \<= "due:$date_today" > /dev/null ; then
+			n=1
+		else
+			break
+		fi
+	done
+}
+
+show_cal() {
+	if [ "$(remt | wc -l)" -gt 0 ] ; then
+		drawsep REMIND
+		remt
+	fi
+}
+
+show_tasks() {
+	due_dates=$(grep "$1" "$TODODIR"/todo.txt | grep -oh 'due:[[:graph:]]*' | sort -u)
+	if [ -n "${due_dates}" ] ; then
+		check_due_dates
+		if [ "$n" -eq 1 ] ; then
+			drawsep 'PRIVATE todo (t)'
+			todo today "$1"
+		fi
+	fi
+
+	due_dates=$(grep "$1" "$UNITODODIR"/todo.txt | grep -oh 'due:[[:graph:]]*' | sort -u)
+	if [ -n "${due_dates}" ] ; then
+		check_due_dates
+		if [ "$n" -eq 1 ] ; then
+			drawsep 'UNIVERSITY todo (ut)'
+			TODODIR=$UNITODODIR todo today "$1"
+		fi
+	fi
+
+	due_dates=$(grep "$1" "$FISTTODODIR"/todo.txt | grep -oh 'due:[[:graph:]]*' | sort -u)
+	if [ -n "${due_dates}" ] ; then
+		check_due_dates
+		if [ "$n" -eq 1 ] ; then
+			drawsep 'F.I.S.T. todo (ft)'
+			TODODIR=$FISTTODODIR todo today "$1"
+		fi
+	fi
+}
+
+if [ -z "$1" ] ; then
+	show_cal
+	show_tasks
+else
+	show_tasks "$@"
+fi
