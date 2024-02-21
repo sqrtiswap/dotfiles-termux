@@ -27,8 +27,12 @@ check_due_dates() {
 	done
 }
 
+remt() {
+	rem -m -b1 -@2,0 -gaadd
+}
+
 show_cal() {
-	if [ "$(remt | wc -l)" -gt 0 ] ; then
+	if [ "$(remt | grep -cv '^$')" -gt 0 ] ; then
 		drawsep REMIND
 		remt
 	fi
