@@ -26,19 +26,19 @@ ahead_behind() {
 		# get branch
 		curr_branch=$(git rev-parse --abbrev-ref HEAD)
 		# get corresponding remote branch
-		curr_remote=$(git config branch.$curr_branch.remote)
+		curr_remote=$(git config branch."${curr_branch}".remote)
 		if [ -n "${curr_remote}" ] ; then
 			# get branch the remote should be merged into
-			curr_merge_branch=$(git config branch.$curr_branch.merge | cut -d / -f 3)
+			curr_merge_branch=$(git config branch."${curr_branch}".merge | cut -d / -f 3)
 			# count and compare commits
-			git rev-list --left-right --count $curr_branch...$curr_remote/$curr_merge_branch | tr -s '\t' '|'
+			git rev-list --left-right --count "${curr_branch}"..."${curr_remote}"/"${curr_merge_branch}" | tr -s '\t' '|'
 		else
 			printf ""
 		fi
 	fi
 }
 
-_shell=$(echo "$0" | awk '{ gsub("/data/data/com.termux/files", "", $0); print $0 }')
+_shell=$(printf "%s\n" "$0" | awk '{ gsub("/data/data/com.termux/files", "", $0); print $0 }')
 _exit_code="\[\033[0;\$((\$?==0?0:31))m\]\[[\${?}]"
 if [[ "$TERM" =~ tmux ]] ; then
 	_basics="$_XTERM_TITLE$_SH_COLOUR$_shell $_exit_code $_PS1_COLOUR\u $_PS1_BLUE\w$_PS1_CLEAR"
@@ -84,7 +84,7 @@ upgrade() {
 	if termuxupgrade ; then
 		exit 0
 	else
-		printf "${_fail}Some things like configs might not be properly updated until a restart is performed.${_rset}\n"
+		printf "%s\n" "${_fail}Some things like configs might not be properly updated until a restart is performed.${_rset}"
 	fi
 }
 
@@ -107,7 +107,7 @@ elif command -v nvim > /dev/null ; then
 else
 	VI='vi'
 fi
-alias vise="$VI"
+alias vise='$VI'
 export EDITOR=$VI
 export VISUAL=$VI
 export FCEDIT=$EDITOR
@@ -162,7 +162,8 @@ cld
 
 # TERMINAL GREETING
 
-export UPTIMETXT=$(uptime)
+UPTIMETXT=$(uptime)
+export UPTIMETXT
 
 agenda() {
 	[ -z "$1" ] && drawsep 'REMIND' && remt
