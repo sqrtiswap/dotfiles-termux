@@ -16,8 +16,9 @@ install:
 	@ln -sf ~/.config/remind/reminders.rem ~/.reminders
 	@echo "---> todo(1) data"
 	@ln -sf ${syncdir}/todo ~/.todo
-	@ln -sf ${syncdir}/todo_fist ~/.todo_fist
 	@ln -sf ${syncdir}/todo_uni ~/.todo_uni
+	@ln -sf ${syncdir}/todo_work ~/.todo_work
+	@ln -sf ${syncdir}/todo_fist ~/.todo_fist
 	@echo "==== Linking tools in ~/bin ============"
 	@mkdir -p ~/bin
 	ln -sf ${dotdir}/bin/agenda ~/bin/agenda
@@ -36,8 +37,9 @@ uninstall:
 	@rm -f ~/.config/remind
 	@echo "---> todo(1) data"
 	@rm -f ~/.todo
-	@rm -f ~/.todo_fist
 	@rm -f ~/.todo_uni
+	@rm -f ~/.todo_work
+	@rm -f ~/.todo_fist
 	@echo "==== Removing tools from ~/bin ========="
 	rm -f ~/bin/agenda
 	rm -f ~/bin/drawsep

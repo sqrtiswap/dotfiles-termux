@@ -142,6 +142,9 @@ export TODO_COLOUR_D="\033[34m" # blue
 export UNITODODIR="$HOME"/.todo_uni
 alias ut='TODODIR=$UNITODODIR todo'
 
+export WORKTODODIR="$HOME"/.todo_work
+alias wt='TODODIR=$WORKTODODIR todo'
+
 export FISTTODODIR="$HOME"/.todo_fist
 alias ft='TODODIR=$FISTTODODIR todo'
 

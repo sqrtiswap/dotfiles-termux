@@ -57,6 +57,15 @@ show_tasks() {
 		fi
 	fi
 
+	due_dates=$(grep "$1" "$WORKTODODIR"/todo.txt | grep -oh 'due:[[:graph:]]*' | sort -u)
+	if [ -n "${due_dates}" ] ; then
+		check_due_dates
+		if [ "$n" -eq 1 ] ; then
+			drawsep 'WORK todo (wt)'
+			TODODIR=$WORKTODODIR todo today "$1"
+		fi
+	fi
+
 	due_dates=$(grep "$1" "$FISTTODODIR"/todo.txt | grep -oh 'due:[[:graph:]]*' | sort -u)
 	if [ -n "${due_dates}" ] ; then
 		check_due_dates
