@@ -1,28 +1,28 @@
 #!/bin/sh
 
 [ -n "$UPTIMETXT" ] \
-	&& _uptime="$UPTIMETXT" \
-	|| _uptime=$(uptime)
+	&& uptimetxt="$UPTIMETXT" \
+	|| uptimetxt=$(uptime)
 
 drawsep() {
 	if [ -z "$1" ] ; then
-		_minus=''
+		minus=''
 		printf "======="
 	else
-		_minus="$1"
-		printf "===== %s " "${_minus}"
+		minus="$1"
+		printf "===== %s " "${minus}"
 	fi
-	_remaining=$((${#_uptime}-${#_minus}-7))
-	if [ "${_remaining}" -le 0 ] ; then
+	remaining=$((${#uptimetxt}-${#minus}-7))
+	if [ "${remaining}" -le 0 ] ; then
 		printf "\n"
 		exit 0
 	fi
 	if command -v jot > /dev/null ; then
-		printf "=%.0s" $(jot ${_remaining}) ; printf '\n'
+		printf "=%.0s" $(jot ${remaining}) ; printf '\n'
 	elif command -v perl > /dev/null ; then
-		perl -e 'print("=" x $ARGV[0], "\n" )' "${_remaining}"
+		perl -e 'print("=" x $ARGV[0], "\n" )' "${remaining}"
 	else
-		printf '%*s' ${_remaining} "" | tr ' ' '=' ; printf '\n'
+		printf '%*s' ${remaining} "" | tr ' ' '=' ; printf '\n'
 	fi
 }
 
