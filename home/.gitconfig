@@ -9,6 +9,7 @@
 	co = checkout
 	cp = cherry-pick
 	df = diff
+	dfs = diff --staged
 	up = "!git remote update -p; git merge --ff-only @{u}"
 	unstage = reset HEAD --
 	last = log -1 HEAD
