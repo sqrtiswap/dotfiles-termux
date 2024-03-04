@@ -12,12 +12,17 @@ drawsep() {
 		_minus="$1"
 		printf "===== %s " "${_minus}"
 	fi
+	_remaining=$((${#_uptime}-${#_minus}-7))
+	if [ "${_remaining}" -le 0 ] ; then
+		printf "\n"
+		exit 0
+	fi
 	if command -v jot > /dev/null ; then
-		printf "=%.0s" $(jot $((${#_uptime}-${#_minus}-7))) ; printf '\n'
+		printf "=%.0s" $(jot ${_remaining}) ; printf '\n'
 	elif command -v perl > /dev/null ; then
-		perl -e 'print("=" x $ARGV[0], "\n" )' "$((${#_uptime}-${#_minus}-7))"
+		perl -e 'print("=" x $ARGV[0], "\n" )' "${_remaining}"
 	else
-		printf '%*s' $((${#_uptime}-${#_minus}-7)) "" | tr ' ' '=' ; printf '\n'
+		printf '%*s' ${_remaining} "" | tr ' ' '=' ; printf '\n'
 	fi
 }
 
