@@ -1,9 +1,9 @@
 #!/bin/sh
 
 if [ -n "$1" ] ; then
-	_location="$1"
+	location="$1"
 else
-	_location='Berlin'
+	location='Berlin'
 fi
 
-curl https://wttr.in/"${_location}"
+curl https://wttr.in/"${location}"

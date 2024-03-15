@@ -1,8 +1,8 @@
 #!/bin/sh
 
-_good="\033[32m"
-_fail="\033[31m"
-_rset="\033[0m"
+good="\033[32m"
+fail="\033[31m"
+rset="\033[0m"
 
 do_upgrade() {
 	pkg upgrade
@@ -11,8 +11,8 @@ do_upgrade() {
 
 close_session() {
 	printf "\nClose this session? [y/n] "
-	IFS= read -r _close_session
-	if [ "${_close_session}" = "y" ] ; then
+	IFS= read -r close_session
+	if [ "${close_session}" = "y" ] ; then
 		exit 0
 	else
 		exit 1
@@ -20,9 +20,9 @@ close_session() {
 }
 
 if do_upgrade ; then
-	printf "${_good}Upgrade successful.${_rset}\n"
+	printf "${good}Upgrade successful.${rset}\n"
 	close_session
 else
-	printf "${_fail}Upgrade failed.${_rset}\n"
+	printf "${fail}Upgrade failed.${rset}\n"
 	exit 1
 fi

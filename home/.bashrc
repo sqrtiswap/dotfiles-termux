@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # PROMPT
-_XTERM_TITLE='\[\033]0;\u@\h:\w\007\]'
-_PS1_CLEAR='\[\033[0m\]'   # reset
-_PS1_BLUE='\[\033[34m\]'   # blue
-_PS1_RED='\[\033[1;31m\]'  # red
-_PS1_GREEN='\[\033[32m\]'  # green
-_SH_COLOUR='\[\033[33m\]'  # yellow
-_GIT_COLOUR='\[\033[95m\]' # magenta
+XTERM_TITLE='\[\033]0;\u@\h:\w\007\]'
+PS1_CLEAR='\[\033[0m\]'   # reset
+PS1_BLUE='\[\033[34m\]'   # blue
+PS1_RED='\[\033[1;31m\]'  # red
+PS1_GREEN='\[\033[32m\]'  # green
+SH_COLOUR='\[\033[33m\]'  # yellow
+GIT_COLOUR='\[\033[95m\]' # magenta
 case "$(id -u)" in
-	0) _PS1_COLOUR=$_PS1_RED ;;
-	*) _PS1_COLOUR=$_PS1_GREEN ;;
+	0) PS1_COLOUR=$PS1_RED ;;
+	*) PS1_COLOUR=$PS1_GREEN ;;
 esac
 
 git_branch() {
@@ -38,17 +38,17 @@ ahead_behind() {
 	fi
 }
 
-_shell=$(printf "%s\n" "$0" | awk '{ gsub("/data/data/com.termux/files", "", $0); print $0 }')
-_exit_code="\[\033[0;\$((\$?==0?0:31))m\]\[[\${?}]"
+shell=$(printf "%s\n" "$0" | awk '{ gsub("/data/data/com.termux/files", "", $0); print $0 }')
+exit_code="\[\033[0;\$((\$?==0?0:31))m\]\[[\${?}]"
 if [[ "$TERM" =~ tmux ]] ; then
-	_basics="$_XTERM_TITLE$_SH_COLOUR$_shell $_exit_code $_PS1_COLOUR\u $_PS1_BLUE\w$_PS1_CLEAR"
+	basics="$XTERM_TITLE$SH_COLOUR$shell $exit_code $PS1_COLOUR\u $PS1_BLUE\w$PS1_CLEAR"
 else
-	_basics="$_XTERM_TITLE$_SH_COLOUR$_shell $_exit_code $_PS1_COLOUR\u@$_PS1_CLEAR\h $_PS1_BLUE\w$_PS1_CLEAR"
+	basics="$XTERM_TITLE$SH_COLOUR$shell $exit_code $PS1_COLOUR\u@$PS1_CLEAR\h $PS1_BLUE\w$PS1_CLEAR"
 fi
-_git_prompt="$_GIT_COLOUR\$(git_branch) \$(ahead_behind)"
-_time="$_PS1_CLEAR\A"
-_prompt="$_PS1_COLOUR\$$_PS1_CLEAR"
-PS1="${_basics} ${_git_prompt}\n${_time} ${_prompt} "
+git_prompt="$GIT_COLOUR\$(git_branch) \$(ahead_behind)"
+time="$PS1_CLEAR\A"
+prompt="$PS1_COLOUR\$$PS1_CLEAR"
+PS1="${basics} ${git_prompt}\n${time} ${prompt} "
 PS2='> '
 
 export PS1 PS2
@@ -85,7 +85,7 @@ upgrade() {
 	if termuxupgrade ; then
 		exit 0
 	else
-		printf "%s\n" "${_fail}Some things like configs might not be properly updated until a restart is performed.${_rset}"
+		printf "%s\n" "${fail}Some things like configs might not be properly updated until a restart is performed.${rset}"
 	fi
 }
 
@@ -130,8 +130,8 @@ alias wdetmold='weather Detmold'
 
 # PROJECTS
 
-_fail="\033[31m"
-_rset="\033[0m"
+fail="\033[31m"
+rset="\033[0m"
 
 alias t=todo
 export TODODIR="$HOME"/.todo
