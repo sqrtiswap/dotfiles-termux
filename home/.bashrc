@@ -156,11 +156,11 @@ cld() {
 	rm -rf "${shared_storage}"/Pictures/Screenshots/.aux > /dev/null 2>&1
 	rm -rf "${shared_storage}"/Movies/.thumbnails > /dev/null 2>&1
 	if [ -d "${shared_storage}"/Movies/Threema ] ; then
-		mv "${shared_storage}"/Movies/Threema/* "${syncdir}"/Sync/Threema
+		mv "${shared_storage}"/Movies/Threema/* "${syncdir}"/Threema
 		rmdir "${shared_storage}"/Movies/Threema
 	fi
 	if [ -d "${shared_storage}"/Pictures/Threema ] ; then
-		mv "${shared_storage}"/Pictures/Threema/* "${syncdir}"/Sync/Threema
+		mv "${shared_storage}"/Pictures/Threema/* "${syncdir}"/Threema
 	fi
 	rmdir "${shared_storage}"/Movies > /dev/null 2>&1
 	rmdir "${shared_storage}"/Download > /dev/null 2>&1
