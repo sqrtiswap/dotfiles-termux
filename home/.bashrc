@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# PROMPT
+# PROMPT #######################################################################
 XTERM_TITLE='\[\033]0;\u@\h:\w\007\]'
 PS1_CLEAR='\[\033[0m\]'   # reset
 PS1_BLUE='\[\033[34m\]'   # blue
@@ -53,6 +53,7 @@ PS2='> '
 
 export PS1 PS2
 
+# PATHS ########################################################################
 export PATH=$PATH:~/bin
 export MANPATH=$MANPATH:~/man
 
@@ -64,6 +65,16 @@ alias ss='cd "${shared_storage}" && la'
 syncdir="${shared_storage}"/Sync
 alias sd='cd "${syncdir}" && la'
 
+# HISTORY ######################################################################
+HISTCONTROL="erasedups:ignoreboth"
+HISTTIMEFORMAT='%F %T '
+HISTFILE="$HOME"/.bash_history
+HISTSIZE=10000
+HISTFILESIZE=2000
+shopt -s histappend
+shopt -s cmdhist
+
+# ALIASES ######################################################################
 alias ls='LANG=C ls --color=auto --group-directories-first -FHh'
 alias ll='ls -l'
 alias la='ls -lA'
@@ -85,11 +96,13 @@ upgrade() {
 	if termuxupgrade ; then
 		exit 0
 	else
+		fail="\033[31m"
+		rset="\033[0m"
 		printf "%s\n" "${fail}Some things like configs might not be properly updated until a restart is performed.${rset}"
 	fi
 }
 
-# CALENDAR
+# CALENDARS
 alias cal='cal -mwy'
 
 alias remind='remind -m -b1'
@@ -116,30 +129,18 @@ export FCEDIT=$EDITOR
 export PAGER=less
 export LESS='-iMRS -x2'
 
-# HISTORY
-HISTCONTROL="erasedups:ignoreboth"
-HISTTIMEFORMAT='%F %T '
-HISTFILE="$HOME"/.bash_history
-HISTSIZE=10000
-HISTFILESIZE=2000
-shopt -s histappend
-shopt -s cmdhist
-
 # WEATHER
 alias wberlin='weather Berlin'
 alias wdetmold='weather Detmold'
 
-# PROJECTS
-
-fail="\033[31m"
-rset="\033[0m"
-
-alias t=todo
-export TODODIR="$HOME"/.todo
+# TODO
 export TODO_COLOUR_A="\033[31m" # red
 export TODO_COLOUR_B="\033[33m" # yellow
 export TODO_COLOUR_C="\033[32m" # green
 export TODO_COLOUR_D="\033[34m" # blue
+
+export TODODIR="$HOME"/.todo
+alias t=todo
 
 export UNITODODIR="$HOME"/.todo_uni
 alias ut='TODODIR=$UNITODODIR todo'
@@ -179,7 +180,7 @@ cld() {
 	rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
 }
 
-# AUTOSTART & TERMINAL GREETING
+# AUTOSTART & TERMINAL GREETING ################################################
 
 UPTIMETXT=$(uptime)
 export UPTIMETXT
