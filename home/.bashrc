@@ -151,34 +151,8 @@ alias wt='TODODIR=$WORKTODODIR todo'
 export FISTTODODIR="$HOME"/.todo_fist
 alias ft='TODODIR=$FISTTODODIR todo'
 
-# CLEAN UP
-# some apps create stupid directories that clutter the view in the file manager
-cld() {
-	# remove dirs that are never needed
-	rm -rf "${shared_storage}"/Pictures/.thumbnails > /dev/null 2>&1
-	rm -rf "${shared_storage}"/Pictures/Screenshots/.aux > /dev/null 2>&1
-	rm -rf "${shared_storage}"/Movies/.thumbnails > /dev/null 2>&1
-
-	# clean out dirs/reorganise stuff
-	movies_threema="${shared_storage}"/Movies/Threema
-	if [ -d "${movies_threema}" ] ; then
-		nr_files=$(find "${movies_threema}" -type f | grep -c '')
-		[ "${nr_files}" -gt 0 ] \
-			&& mv "${movies_threema}"/* "${syncdir}"/Threema
-		rmdir "${movies_threema}"
-	fi
-	pictures_threema="${shared_storage}"/Pictures/Threema
-	if [ -d "${pictures_threema}" ] ; then
-		nr_files=$(find "${pictures_threema}" -type f | grep -c '')
-		[ "${nr_files}" -gt 0 ] \
-			&& mv "${pictures_threema}"/* "${syncdir}"/Threema
-	fi
-
-	# remove empty dirs that will just be recreated if/when "needed"
-	rmdir "${shared_storage}"/Movies > /dev/null 2>&1
-	rmdir "${shared_storage}"/Download > /dev/null 2>&1
-	rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
-}
+# CLEAN UP: declutter view in graphical file manager
+alias cld=cleandirs
 
 # AUTOSTART & TERMINAL GREETING ################################################
 

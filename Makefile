@@ -22,6 +22,7 @@ install:
 	@echo "==== Linking tools in ~/bin ============"
 	@mkdir -p ~/bin
 	ln -sf ${dotdir}/bin/agenda ~/bin/agenda
+	ln -sf ${dotdir}/bin/cleandirs ~/bin/cleandirs
 	ln -sf ${dotdir}/bin/drawsep ~/bin/drawsep
 	ln -sf ${dotdir}/bin/termuxupgrade ~/bin/termuxupgrade
 	ln -sf ${dotdir}/bin/weather ~/bin/weather
@@ -42,6 +43,7 @@ uninstall:
 	@rm -f ~/.todo_fist
 	@echo "==== Removing tools from ~/bin ========="
 	rm -f ~/bin/agenda
+	rm -f ~/bin/cleandirs
 	rm -f ~/bin/drawsep
 	rm -f ~/bin/termuxupgrade
 	rm -f ~/bin/weather

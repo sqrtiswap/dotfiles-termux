@@ -3,6 +3,7 @@
 ```
 ├── bin
 │   ├── agenda
+│   ├── cleandirs
 │   ├── drawsep
 │   ├── termuxupgrade
 │   └── weather
