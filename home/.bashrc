@@ -179,14 +179,16 @@ cld() {
 	rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
 }
 
-# AUTOSTART
-
-pidof -q remind || backrem
-cld
-
-# TERMINAL GREETING
+# AUTOSTART & TERMINAL GREETING
 
 UPTIMETXT=$(uptime)
 export UPTIMETXT
 
-drawsep && uptime && agenda
+drawsep
+uptime
+
+drawsep 'AUTOSTART'
+pidof -q remind || backrem
+cld
+
+agenda
