@@ -94,7 +94,8 @@ alias cal='cal -mwy'
 
 alias remind='remind -m -b1'
 alias rem='rem -m -b1 -@2,0 -gaadd'
-alias remt='rem'
+alias w2rem='rem -cu+2'
+alias m2rem='rem -cu2'
 alias backrem='remind -z -k"termux-notification -c '%s' -t Remind" ~/.reminders &'
 # needs to be installed: 1. pkg install termux-api
 #                        2. F-Droid Termux:API plugin
@@ -152,16 +153,27 @@ alias ft='TODODIR=$FISTTODODIR todo'
 # CLEAN UP
 # some apps create stupid directories that clutter the view in the file manager
 cld() {
+	# remove dirs that are never needed
 	rm -rf "${shared_storage}"/Pictures/.thumbnails > /dev/null 2>&1
 	rm -rf "${shared_storage}"/Pictures/Screenshots/.aux > /dev/null 2>&1
 	rm -rf "${shared_storage}"/Movies/.thumbnails > /dev/null 2>&1
-	if [ -d "${shared_storage}"/Movies/Threema ] ; then
-		mv "${shared_storage}"/Movies/Threema/* "${syncdir}"/Threema
-		rmdir "${shared_storage}"/Movies/Threema
+
+	# clean out dirs/reorganise stuff
+	movies_threema="${shared_storage}"/Movies/Threema
+	if [ -d "${movies_threema}" ] ; then
+		nr_files=$(find "${movies_threema}" -type f | grep -c '')
+		[ "${nr_files}" -gt 0 ] \
+			&& mv "${movies_threema}"/* "${syncdir}"/Threema
+		rmdir "${movies_threema}"
 	fi
-	if [ -d "${shared_storage}"/Pictures/Threema ] ; then
-		mv "${shared_storage}"/Pictures/Threema/* "${syncdir}"/Threema
+	pictures_threema="${shared_storage}"/Pictures/Threema
+	if [ -d "${pictures_threema}" ] ; then
+		nr_files=$(find "${pictures_threema}" -type f | grep -c '')
+		[ "${nr_files}" -gt 0 ] \
+			&& mv "${pictures_threema}"/* "${syncdir}"/Threema
 	fi
+
+	# remove empty dirs that will just be recreated if/when "needed"
 	rmdir "${shared_storage}"/Movies > /dev/null 2>&1
 	rmdir "${shared_storage}"/Download > /dev/null 2>&1
 	rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
