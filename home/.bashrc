@@ -89,6 +89,7 @@ alias rm='rm -v'
 # PACKAGE MANAGEMENT
 alias pkga='pkg install'
 alias pkgd='pkg uninstall'
+alias pkgr=pkgd
 alias pkgl='pkg list-installed'
 alias pkgs='pkg search'
 
@@ -96,9 +97,7 @@ upgrade() {
 	if termuxupgrade ; then
 		exit 0
 	else
-		fail="\033[31m"
-		rset="\033[0m"
-		printf "%s\n" "${fail}Some things like configs might not be properly updated until a restart is performed.${rset}"
+		drawsep 'INCOMPLETELY UPGRADED SYSTEM'
 	fi
 }
 
