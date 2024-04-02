@@ -1,3 +1,4 @@
+dotdir = $(shell pwd)
 syncdir = ~/storage/shared/Sync
 
 .DEFAULT_GOAL := install
@@ -5,9 +6,9 @@ syncdir = ~/storage/shared/Sync
 install:
 	@echo "==== Linking HOME ======================"
 	@echo "---> bash(1) config"
-	@ln -sf home/.bashrc ~/.bashrc
+	@ln -sf ${dotdir}/home/.bashrc ~/.bashrc
 	@echo "---> git(1) config"
-	@ln -sf home/.gitconfig ~/.gitconfig
+	@ln -sf ${dotdir}/home/.gitconfig ~/.gitconfig
 	@echo "---> remind(1) data"
 	@ln -sf ${syncdir}/remind ~/.config/remind
 	@ln -sf ~/.config/remind/reminders.rem ~/.reminders
@@ -18,11 +19,11 @@ install:
 	@ln -sf ${syncdir}/todo_fist ~/.todo_fist
 	@echo "==== Linking tools in ~/bin ============"
 	@mkdir -p ~/bin
-	ln -sf bin/agenda ~/bin/agenda
-	ln -sf bin/cleandirs ~/bin/cleandirs
-	ln -sf bin/drawsep ~/bin/drawsep
-	ln -sf bin/termuxupgrade ~/bin/termuxupgrade
-	ln -sf bin/weather ~/bin/weather
+	ln -sf ${dotdir}/bin/agenda ~/bin/agenda
+	ln -sf ${dotdir}/bin/cleandirs ~/bin/cleandirs
+	ln -sf ${dotdir}/bin/drawsep ~/bin/drawsep
+	ln -sf ${dotdir}/bin/termuxupgrade ~/bin/termuxupgrade
+	ln -sf ${dotdir}/bin/weather ~/bin/weather
 
 uninstall:
 	@echo "==== Removing links from HOME =========="
