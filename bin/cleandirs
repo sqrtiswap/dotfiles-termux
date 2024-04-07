@@ -3,9 +3,9 @@
 # some apps create stupid directories that clutter the view in the file manager
 #
 # remove dirs that are never needed
-rm -rf "${shared_storage}"/Pictures/.thumbnails > /dev/null 2>&1
-rm -rf "${shared_storage}"/Pictures/Screenshots/.aux > /dev/null 2>&1
-rm -rf "${shared_storage}"/Movies/.thumbnails > /dev/null 2>&1
+rm -rf "${shared_storage}"/Pictures/.thumbnails
+rm -rf "${shared_storage}"/Pictures/Screenshots/.aux
+rm -rf "${shared_storage}"/Movies/.thumbnails
 
 # clean out dirs/reorganise stuff
 movies_threema="${shared_storage}"/Movies/Threema
@@ -23,6 +23,6 @@ if [ -d "${pictures_threema}" ] ; then
 fi
 
 # remove empty dirs that will just be recreated if/when "needed"
-rmdir "${shared_storage}"/Movies > /dev/null 2>&1
-rmdir "${shared_storage}"/Download > /dev/null 2>&1
-rmdir "${shared_storage}"/Downloads > /dev/null 2>&1
+rmdir "${shared_storage}"/Movies
+rmdir "${shared_storage}"/Download
+rmdir "${shared_storage}"/Downloads
