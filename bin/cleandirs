@@ -1,11 +1,16 @@
 #!/bin/sh
 
 # some apps create stupid directories that clutter the view in the file manager
-#
+shared_storage="$HOME"/storage/shared
+syncdir="${shared_storage}"/Sync
+
 # remove dirs that are never needed
-rm -rf "${shared_storage}"/Pictures/.thumbnails
-rm -rf "${shared_storage}"/Pictures/Screenshots/.aux
-rm -rf "${shared_storage}"/Movies/.thumbnails
+tn_pics="${shared_storage}"/Pictures/.thumbnails
+tn_movs="${shared_storage}"/Movies/.thumbnails
+sc_pics_aux="${shared_storage}"/Pictures/Screenshots/.aux
+[ -d "${tn_pics}" ] && rm -rf "${tn_pics}"
+[ -d "${tn_movs}" ] && rm -rf "${tn_movs}"
+[ -d "${sc_pics_aux}" ] && rm -rf "${sc_pics_aux}"
 
 # clean out dirs/reorganise stuff
 movies_threema="${shared_storage}"/Movies/Threema
