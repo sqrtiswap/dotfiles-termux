@@ -32,7 +32,7 @@ remt() {
 }
 
 show_cal() {
-	if [ "$(remt | grep -cv '^$')" -gt 0 ] ; then
+	if [ "$(remt | grep -cv -e '^$' -e '^No reminders.$')" -gt 0 ] ; then
 		drawsep REMIND
 		remt
 	fi
