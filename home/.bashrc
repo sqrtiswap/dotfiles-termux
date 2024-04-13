@@ -153,6 +153,8 @@ alias ft='TODODIR=$FISTTODODIR todo'
 # CLEAN UP: declutter view in graphical file manager
 alias cld=cleandirs
 
+alias bsv='cp -R "${shared_storage}"/.SeedVaultAndroidBackup "${syncdir}"/seedvault'
+
 # AUTOSTART & TERMINAL GREETING ################################################
 
 UPTIMETXT=$(uptime)
